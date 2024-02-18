@@ -1,11 +1,12 @@
 import requests
+from prettytable import PrettyTable
 
 def get_latest_version(repo_name):
     url = f"https://api.github.com/repos/{repo_name}/releases/latest"
 
     try:
         response = requests.get(url)
-        response.raise_for_status() 
+        response.raise_for_status()
 
         data = response.json()
         latest_version = data['tag_name']
@@ -25,10 +26,15 @@ if __name__ == "__main__":
         "Prometheus Kafka Adapter": "Telefonica/prometheus-kafka-adapter"
     }
 
+    table = PrettyTable()
+    table.field_names = ["Repository", "Latest Version"]
+
     for name, repo in repositories.items():
         latest_version = get_latest_version(repo)
 
         if latest_version:
-            print(f"Latest {name} version: {latest_version}")
+            table.add_row([name, latest_version])
         else:
-            print(f"Failed to fetch {name} version.")
+            table.add_row([name, "Failed to fetch"])
+
+    print(table)
