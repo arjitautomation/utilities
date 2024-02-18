@@ -7,3 +7,9 @@ kafka-server-start.sh -> Used to start kafka server (it uses config file located
 ## Creating topic
 
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic cities
+
+when we create a topic, the messages are stored in that topic, the location of topic's messages can be found in server.properties. you may notice
+cities-0 as the folder because we have only created a single partitions, even the partition number is also defined in server.properties.
+cd /tmp/kafka-logs 
+arjitsrivastava@ARJITs-MacBook-Air kafka-logs % ls
+cities-0                                log-st
