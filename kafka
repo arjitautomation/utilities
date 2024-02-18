@@ -2,3 +2,8 @@ zookeeper should be running first
 
 zookeeper-server-start.sh -> it uses config file located under config/zookeeper.properties
 kafka-server-start.sh -> Used to start kafka server (it uses config file located in config/server.properties)
+
+
+## Creating topic
+
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic cities
